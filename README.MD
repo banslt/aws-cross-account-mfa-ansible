@@ -74,8 +74,8 @@
 ```
 ---
 sts: true
-sts_role_arn: "arn:aws:iam::DESTINATIONACCOUNTID:role/DevOps-Admin-Role" # Role ARN for Destination Assumed Role
-sts_mfa: "arn:aws:iam::JUMPACCOUNTID:mfa/habumori" # MFA Serial of jump account
+sts_role_arn: "arn:aws:iam::DESTINATIONACCOUNTID:role/ROLE" # Role ARN for Destination Assumed Role
+sts_mfa: "arn:aws:iam::JUMPACCOUNTID:mfa/USER" # MFA Serial of jump account
 sts_role_session_name: "ansible" # The session name you will use (for CloudTrail)
 ```
 
