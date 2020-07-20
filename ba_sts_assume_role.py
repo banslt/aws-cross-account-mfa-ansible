@@ -25,7 +25,7 @@ options:
     required: true
   mfa_serial_number:
     description:
-      - he identification number of the MFA device that is associated with the user who is making the AssumeRole call.
+      - The identification number of the MFA device that is associated with the user who is making the AssumeRole call.
     required: false
     default: null
   mfa_token:
@@ -94,14 +94,21 @@ def run_module():
             )
         changed = True
     except Exception as e:
-        module.fail_json(mesg=str(e))
+        
+      clean_env()
+      module.fail_json(mesg=str(e))
 
     result['changed'] = True
     result['sts_creds'] = res["Credentials"]
     result['sts_user'] = res["AssumedRoleUser"]
 
+    clean_env()
     module.exit_json(**result)
 
+def clean_env():
+  del os.environ['AWS_ACCESS_KEY_ID']
+  del os.environ['AWS_SECRET_ACCESS_KEY']
+  del os.environ['AWS_SESSION_TOKEN']
 
 def main():
     run_module()
